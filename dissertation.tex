@@ -39,9 +39,9 @@ Specifically, what are existing methods of XAI?  Also, there are some other pret
 
 \subsubsection{Use Cases}
 
-\subsubsection{Challenges}
-
 \subsubsection{Alignment with Autonomous Vehicles}
+
+\subsubsection{Challenges}
 
 \subsubsection{Conclusion and Future Research}
 
@@ -81,7 +81,7 @@ Calculating the contribution of individual training samples to a trained model's
 
 I'll need to put something here
 
-\section{Use Cases} \label{UseCases}
+\section{Use Cases} \label{sec:UseCases}
 
 We've layed out various methods of XAI, but the question still remains of how do these methods provide value to anyone.  Here, we explore the various users who interface with XAI and what value is provided.
 
@@ -118,11 +118,11 @@ We've layed out various methods of XAI, but the question still remains of how do
     \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
 \end{itemize}
 
-\section{Alignment with Autonomous Vehicles}
+\section{Alignment with Autonomous Vehicles}\label{sec:Alignment}
 
-The use cases defined in \ref{UseCases} span users with a wide
+The use cases defined in \ref{sec:UseCases} span users with a wide variety of backgrounds.
 
-\section{Challenges in XAI}
+\section{Challenges in XAI} \label{sec:Challenges}
 \begin{itemize}
     \item Feature relevancy can be compromised by using a mask on the input that is virtually undetectable to the human eye \cite{DBLP:journals/corr/abs-1812-00891}.
 
@@ -132,6 +132,10 @@ The use cases defined in \ref{UseCases} span users with a wide
     
     \item Private industry is rarely incentivized to expose algorithms and ML models to researchers \cite{Veale:2018:FAD:3173574.3174014}.
 \end{itemize}
+
+\section{Conclusion and Future Research}
+
+Apply XAI to \ref{sec:Alignment} and also identify \ref{sec:Challenges} that may be worked towards.
 
 \nocite{*}
 \bibliography{references}
