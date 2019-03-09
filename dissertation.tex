@@ -3,11 +3,14 @@
 \begin{document}
 
 \title{A Survey of XAI Methods\\and Alignment with Autonmous Vehicles}
-\author{David Kaczynski}
+\author{
+    \IEEEauthorblockN{David Kaczynski}
+    \\\IEEEauthorblockA{University of Michigan}
+}
 \maketitle
 
 \begin{abstract}
-This is my abstract.  So, I've been looking a lot at the interpretation and explanation of black box machine learning methods, namely, neural networks, because they're mysterious, fascinating, and a little bit scary.  There are lots of options available for tools for developing neural networks, but the workflow of a data scientist is pretty well defined:  data preparation, feature extraction, dimensionality reduction, training, testing, and analysis of results.  We are specifically going to be focusing on a specific set of methods for analyzing results known as XAI, eXplainable Artificial intelligence.  In this paper, we explore the history and background that has popularized the use of black box machine learning methods, their relationships with society, the problems that XAI hopes to solve, and the challenges it faces in doing so.
+This is my abstract.  So, I've been looking a lot at the interpretation and explanation of black box machine learning methods, namely, neural networks, because they're mysterious, fascinating, and a little bit scary.  There are lots of options available for tools for developing neural networks, but the workflow of a data scientist is pretty well defined:  data preparation, feature extraction, dimensionality reduction, training, testing, and analysis of results.  We are specifically going to be focusing on a specific set of methods for analyzing results known as XAI, eXplainable Artificial intelligence.  In this paper, we explore the history and background that has popularized the use of black box machine learning methods, their relationships with society, the problems that XAI hopes to solve, and the challenges it faces in doing so.  Then, we take our exploration of XAI a step further by aligning its use cases with the development and use of autonomous vehicle technology.
 \end{abstract}
 
 \section{Introduction}
@@ -32,6 +35,7 @@ Love it or hate it, AI/ML are like the Patriots:  they're here, they're winning,
 
 \subsubsection{Background}
 
+Specifically, what are existing methods of XAI?  Also, there are some other pretty darn thorough surveys on XAI.
 
 \subsubsection{Use Cases}
 
@@ -43,16 +47,10 @@ Love it or hate it, AI/ML are like the Patriots:  they're here, they're winning,
 
 \section{Background}
 
-\subsection{Methods of XAI}
-\begin{itemize}
-    \item Introductory paper of LRP \cite{10.1371/journal.pone.0130140}
-    \item Verbalization of CNN decisions \cite{10.1007/978-3-319-46493-0_1}
-    \item Activation Maximization \cite{Nguyen2016}
-    \item Calculating the contribution of individual training samples to a trained model's decision \cite{Ma2017}
-    \item An introduction of counter factual explanations as a method of explaining decisions without interpreting "black box" internals \cite{DBLP:journals/corr/abs-1711-00399}
-\end{itemize}
+Currently, there is no formal definition of what is or is not an explanation of the output of a machine learning model.
 
-\subsection{Existing Surveys}
+Let's summarize these surveys
+
 \begin{itemize}
     \item Comprehensive survey of visualizations as XAI techniques \cite{Hohman2018}
     \item Methods of LRP \& heatmaps and their various use cases in research\cite{MONTAVON20181}
@@ -61,37 +59,63 @@ Love it or hate it, AI/ML are like the Patriots:  they're here, they're winning,
     \item Another broad survey of techniques in the field of XAI along with a discussion on its history and fundamental concepts, but again, no mention of verbalization as a technique\cite{Adadi2018}
 \end{itemize}
 
+
+\subsection{Visualization Techniques}
+
+Introductory paper of LRP \cite{10.1371/journal.pone.0130140}
+
+Activation Maximization \cite{Nguyen2016}
+
+\subsection{Verbalization of Explanations}
+Verbalization of CNN decisions \cite{10.1007/978-3-319-46493-0_1}
+
+An introduction of counter factual explanations as a method of explaining decisions without interpreting "black box" internals \cite{DBLP:journals/corr/abs-1711-00399}
+
+\subsection{Data Provenance}
+
+Data provenance to trace decisions and analysis to the raw input data
+
+Calculating the contribution of individual training samples to a trained model's decision \cite{Ma2017}
+
+\subsection{Model Induction}
+
+I'll need to put something here
+
 \section{Use Cases} \label{UseCases}
 
+We've layed out various methods of XAI, but the question still remains of how do these methods provide value to anyone.  Here, we explore the various users who interface with XAI and what value is provided.
+
+\subsection{As a data scientist, I can use the explanation of model decisions to identify opportunities to improve the training dataset and make the model more robust}
+
 \begin{itemize}
-    \item As a data scientist, I can use the explanation of model decisions to identify opportunities to improve the training dataset and make the model more robust. 
-    \begin{itemize}
-        \item Montavan et al provide multiple real examples of researchers using a popular XAI method called Layerwise Relevance Propogation (LRP) for convolutional neural networks \cite{MONTAVON20181}.  In one example, it was discovered that a computer vision classifier was classifying horses based on a watermark that was present in the training dataset.
-        \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training dataset.
-        \item Liu et al focus on interpreting the decisions of a model used to identify cybersecurity threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perterbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
-        \item LAMP is a tool that can trace the decision of a trained model to the importance that individual samples had on that decision. \cite{Ma2017}
-    \end{itemize}
+    \item Montavan et al provide multiple real examples of researchers using a popular XAI method called Layerwise Relevance Propogation (LRP) for convolutional neural networks \cite{MONTAVON20181}.  In one example, it was discovered that a computer vision classifier was classifying horses based on a watermark that was present in the training dataset.
+    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training dataset.
+    \item Liu et al focus on interpreting the decisions of a model used to identify cybersecurity threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perterbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
+    \item LAMP is a tool that can trace the decision of a trained model to the importance that individual samples had on that decision. \cite{Ma2017}
+\end{itemize}
 
-    \item As a potential consumer of an AI/ML product, such as an autonomous vehicle or virtual assistant, an explanation of how the product is making its decisions will improve my trust in the product.
-    \begin{itemize}
-        \item Human subjects are asked about how much they trust a classifier before and after its explanations are made available \cite{Ribeiro:2016:WIT:2939672.2939778}.  
-        \item Decisions from autonomous vehicles and advanced driver assistance systems (ADAS) may be explained using XAI methods to answer the questions "How?" and "Why?".  Koo et al measure both the emotional impact and impact in making safer decisions when drivers are provided answers to these questions \cite{Koo2015}
-    \end{itemize}
+\subsection{As a potential consumer of an AI/ML product, such as an autonomous vehicle or virtual assistant, an explanation of how the product is making its decisions will improve my trust in the product}
 
-    \item As a provider of an AI/ML product, I am responsible for providing an explanation for how my product makes its decisions in the case of being the subject of an investigation or defendant in a lawsuit.
-    \begin{itemize}
-        \item Human subjects conduct fictitious banking scenarios, both with and without descrimination-aware data mining (DADM) tools \cite{Berendt2014}.  The accuracy and presence of discrimination in decisions was compared across tools.
-        \item Autonomous vehicles and vehicles with ADAS from Tesla, Google, and GM Cruise have been involved with numerous traffic incidencts, ranging from trivial to fatal \cite{Read2016} \cite{Tesla2018} \cite{Ackerman2016} \cite{Bhavsar2017} 
-        \item Researchers discuss non-technical challenges and high-level technical challenges in investigating transparent model design in private industry \cite{Veale:2018:FAD:3173574.3174014}
-        \item In the criminal justice system, judges and parole boards may apply predictive models as tools in making decisions.  Racial discrimination has been uncovered in such tools \cite{Wexler.2017} \cite{Angwin2016}.
-        \item A magazine article describes the GPDR's "right to explanation" and includes a survey of research in identifying and rectifying descrimination \cite{Goodman2017EuropeanUR}
-    \end{itemize}
+\begin{itemize}
+    \item Human subjects are asked about how much they trust a classifier before and after its explanations are made available \cite{Ribeiro:2016:WIT:2939672.2939778}.  
+    \item Decisions from autonomous vehicles and advanced driver assistance systems (ADAS) may be explained using XAI methods to answer the questions "How?" and "Why?".  Koo et al measure both the emotional impact and impact in making safer decisions when drivers are provided answers to these questions \cite{Koo2015}
+\end{itemize}
 
-    \item As a member of a team of data scientists, I want to improve collaboration and reduce the duplication of effort by being able to effectively store, query, and trace how and on what data our  AI/ML models were trained, and, potentially, be able to trace a decision to the relevancy of each training item. 
-    \begin{itemize}
-        \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or dervied values  \cite{Interlandi2017}.
-        \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
-    \end{itemize}
+\subsection{As a provider of an AI/ML product, I am responsible for providing an explanation for how my product makes its decisions in the case of being the subject of an investigation or defendant in a lawsuit}
+
+\begin{itemize}
+    \item Human subjects conduct fictitious banking scenarios, both with and without descrimination-aware data mining (DADM) tools \cite{Berendt2014}.  The accuracy and presence of discrimination in decisions was compared across tools.
+    \item Autonomous vehicles and vehicles with ADAS from Tesla, Google, and GM Cruise have been involved with numerous traffic incidencts, ranging from trivial to fatal \cite{Read2016} \cite{Tesla2018} \cite{Ackerman2016} \cite{Bhavsar2017} 
+    \item Researchers discuss non-technical challenges and high-level technical challenges in investigating transparent model design in private industry \cite{Veale:2018:FAD:3173574.3174014}
+    \item In the criminal justice system, judges and parole boards may apply predictive models as tools in making decisions.  Racial discrimination has been uncovered in such tools \cite{Wexler.2017} \cite{Angwin2016}.
+    \item A magazine article describes the GPDR's "right to explanation" and includes a survey of research in identifying and rectifying descrimination \cite{Goodman2017EuropeanUR}
+\end{itemize}
+
+\subsection{As a member of a team of data scientists, I want to improve collaboration and reduce the duplication of effort by being able to effectively store, query, and trace how and on what data our  AI/ML models were trained, and, potentially, be able to trace a decision to the relevancy of each training item}
+
+\begin{itemize}
+    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or dervied values  \cite{Interlandi2017}.
+    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
 \end{itemize}
 
 \section{Alignment with Autonomous Vehicles}
