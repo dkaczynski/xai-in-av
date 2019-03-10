@@ -15,50 +15,42 @@ This is my abstract.  So, I've been looking a lot at the interpretation and expl
 
 \section{Introduction}
 
-\subsection{Soft introduction.  ML/AI is hot stuff, smart cars, autonomous homes, internet of stuff, etc etc}
-
 Machine learning and artificial intelligence (AI/ML) have gained mainstream attention as consumer products featuring these technologies permeate into everyday life.  Healthcare, transportation, supply chains, stock markets, social media, national security, genetic engineering, political science, and smart homes are all applying AI/ML to make faster, more accurate decisions and to automate tasks that previously required a human expert [citations needed].  As a wider audience is exposed to AI/ML, new questions are on the tips of people's tongues, like "what is the difference between artificial intelligence and machine learning?" and "do I need to be worried about computers making decisions that directly impact my health, security, and privacy?".
-
-\subsection{What is XAI?  What is machine learning? What can it do?  What is a black box model?}
 
 While artificial intelligence is a more familiar term and has a broader, amorphous definition, machine learning is a branch of AI that can be definid relatively explicitely.  Machine learning is the algorithmic processing of training data to create a computer program that can be used for repeatable tasks, such as making decisions or extracting insights from data.  In this sense, the computer can said to be "learning" by looking at existing data to create a model that can be applied to new data.  Some methods, such linear regression, are old news scooby doo.  Even the hot topic of neural networks was introduced while you were in grade school.  What *is* new is the availability of data, the raging locomotive research interest, and powerful GPUs and distributed commodity hardware to actually perform large scale AI/ML activity.  Despite AI being directly in the name, the field of XAI typically is more focused on so-called "black box" machine learning models, such as deep neural networks.  
 
-\subsection{What is an explainable model?  Why are block box models growing in popularity?  What are they used for?}
 
 Deep learning is a relatively new set of methods of machine learning based off an older concept called neural networks.  Thanks to advancement in GPU technology, cheaper and faster processing of linear equations has become affordable and available to a wider audience of consumers, including researchers, hobbyists, and professionals.  They excel and these things but not at those things, but hey, they're even getting better at those things like creeping us out with people faces.
 
-\subsection{Why do we need XAI?  Why should we care about "cracking the black box"?  What can it be used for?}
-
 Love it or hate it, AI/ML are like the Patriots:  they're here, they're winning, and there's nothing you can do about it.  Our lives are on the line.  Seriously.  Medical diagnosis, autonomous vehicles, personal and private details from the IoT...for safety, trust, and progress, XAI is srs, srsly.  
 
-\subsection{Organization of paper}
 
-\subsubsection{Background}
+\subsection{Organization of Paper}
 
-Specifically, what are existing methods of XAI?  Also, there are some other pretty darn thorough surveys on XAI.
+This paper is organized into the following sections.
 
-\subsubsection{Use Cases}
+\begin{itemize}
+    \item\textit{Background}: Specifically, what are existing methods of XAI?  Also, there are some other pretty darn thorough surveys on XAI.
 
-\subsubsection{Alignment with Autonomous Vehicles}
+    \item\textit{Use Cases}: Methods of XAI can be used to the benefit users with a wide variety of backgrounds.  We identify four general use cases for data scientists and consumers.
 
-\subsubsection{Challenges}
+    \item\textit{Alignment with Autonomous Vehicles}: The perspectives of both engineers and consumers of autonomous vehicles (AV) are considered as the relationship between XAI and AV are explored.
 
-\subsubsection{Conclusion and Future Research}
+    \item\textit{Challenges}: XAI is a relatively young field, lacking formality, and there are several legitimate criticisms against it.  It is important to recognize the shortcomings of XAI and assess the current feasibility and progress in overcoming its obstacles.
+
+    \item\textit{Conclusion and Future Research}: A summary of the alignment between XAI and AV is presented along with an outline of how identified obstacles may be approached.
+\end{itemize}
 
 \section{Background}
 
-Currently, there is no formal definition of what is or is not an explanation of the output of a machine learning model.
-
-Let's summarize these surveys
+XAI is the interpretation and explanation of machine learning models.  In order to go further, the concepts of "interpretation" and "explanation" warrant a more formal definition:
 
 \begin{itemize}
-    \item Comprehensive survey of visualizations as XAI techniques \cite{Hohman2018}
-    \item Methods of LRP \& heatmaps and their various use cases in research\cite{MONTAVON20181}
-    \item A comprehensive survey of a variety of XAI techniques, includes sensitivity analysis (like heatmapping), rule and model extraction, activation maximization, and more \cite{Guidotti:2018:SME:3271482.3236009}, but it doesn't mention verbalization as a technique
-    \item Network graphs plotting relationships beween topics and sub-topics related to XAI \cite{Abdul:2018:TTE:3173574.3174156}
-    \item Another broad survey of techniques in the field of XAI along with a discussion on its history and fundamental concepts, but again, no mention of verbalization as a technique\cite{Adadi2018}
+    \item an \textbf{interpretation} is the mapping of an abstract concept (e.g. a predicted class) into a domain that the human can make sense of, and
+    \item an \textbf{explanation} is the collection of features of the interpretable domain, that have contributed for a given example to produce a decision (e.g. classification or regression) \cite{MONTAVON20181}.
 \end{itemize}
 
+Interpretations are often presented in the form of a heat map layer on an image, natural language generated to either describe a decision or to describe a boundary of what a model can or cannot do, or an easier-to-explain model, such as a decision tree.  An explanation is the relationship between some aspect of machine learning to something that is interpretable.  The ambiguity and lack of formality around the concept of an explanation is discussed further in \ref{sec:Challenges} Challenges in XAI.
 
 \subsection{Visualization Techniques}
 
@@ -80,6 +72,16 @@ Calculating the contribution of individual training samples to a trained model's
 \subsection{Model Induction}
 
 I'll need to put something here
+
+\subsection{Existing Surveys in XAI}
+
+\begin{itemize}
+    \item Comprehensive survey of visualizations as XAI techniques \cite{Hohman2018}
+    \item Methods of LRP \& heatmaps and their various use cases in research\cite{MONTAVON20181}
+    \item A comprehensive survey of a variety of XAI techniques, includes sensitivity analysis (like heatmapping), rule and model extraction, activation maximization, and more \cite{Guidotti:2018:SME:3271482.3236009}, but it doesn't mention verbalization as a technique
+    \item Network graphs plotting relationships between topics and sub-topics related to XAI \cite{Abdul:2018:TTE:3173574.3174156}
+    \item Another broad survey of techniques in the field of XAI along with a discussion on its history and fundamental concepts, but again, no mention of verbalization as a technique\cite{Adadi2018}
+\end{itemize}
 
 \section{Use Cases} \label{sec:UseCases}
 
@@ -120,9 +122,10 @@ We've layed out various methods of XAI, but the question still remains of how do
 
 \section{Alignment with Autonomous Vehicles}\label{sec:Alignment}
 
-The use cases defined in \ref{sec:UseCases} span users with a wide variety of backgrounds.
+The use cases defined in \ref{sec:UseCases} Use Cases span users with a wide variety of backgrounds.
 
 \section{Challenges in XAI} \label{sec:Challenges}
+
 \begin{itemize}
     \item Feature relevancy can be compromised by using a mask on the input that is virtually undetectable to the human eye \cite{DBLP:journals/corr/abs-1812-00891}.
 
@@ -135,9 +138,8 @@ The use cases defined in \ref{sec:UseCases} span users with a wide variety of ba
 
 \section{Conclusion and Future Research}
 
-Apply XAI to \ref{sec:Alignment} and also identify \ref{sec:Challenges} that may be worked towards.
+Apply XAI to \ref{sec:Alignment} Alignment with Autonomous Vehicles and also identify \ref{sec:Challenges} Challenges in XAI that may be worked towards.
 
-\nocite{*}
 \bibliography{references}
 \bibliographystyle{ieeetr} 
 
