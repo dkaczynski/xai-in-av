@@ -15,10 +15,11 @@ This is my abstract.  So, I've been looking a lot at the interpretation and expl
 
 \section{Introduction}
 
+\subsection{History and Concepts}
+
 Machine learning and artificial intelligence (AI/ML) have gained mainstream attention as consumer products featuring these technologies permeate into everyday life.  Healthcare, transportation, supply chains, stock markets, social media, national security, genetic engineering, political science, and smart homes are all applying AI/ML to make faster, more accurate decisions and to automate tasks that previously required a human expert [citations needed].  As a wider audience is exposed to AI/ML, new questions are on the tips of people's tongues, like "what is the difference between artificial intelligence and machine learning?" and "do I need to be worried about computers making decisions that directly impact my health, security, and privacy?".
 
-While artificial intelligence is a more familiar term and has a broader, amorphous definition, machine learning is a branch of AI that can be definid relatively explicitely.  Machine learning is the algorithmic processing of training data to create a computer program that can be used for repeatable tasks, such as making decisions or extracting insights from data.  In this sense, the computer can said to be "learning" by looking at existing data to create a model that can be applied to new data.  Some methods, such linear regression, are old news scooby doo.  Even the hot topic of neural networks was introduced while you were in grade school.  What *is* new is the availability of data, the raging locomotive research interest, and powerful GPUs and distributed commodity hardware to actually perform large scale AI/ML activity.  Despite AI being directly in the name, the field of XAI typically is more focused on so-called "black box" machine learning models, such as deep neural networks.  
-
+While artificial intelligence is a more familiar term and has a broader, amorphous definition, machine learning is a branch of AI that can be defined relatively explicitely.  Machine learning is the algorithmic processing of training data to create a computer program that can be used for repeatable tasks, such as making decisions or extracting insights from data.  In this sense, the computer can said to be "learning" by looking at existing data to create a model that can be applied to new data.  Some methods, such linear regression, are old news scooby doo.  Even the hot topic of neural networks was introduced while you were in grade school.  What *is* new is the availability of data, the raging locomotive research interest, and powerful GPUs and distributed commodity hardware to actually perform large scale AI/ML activity.  Despite AI being directly in the name, the field of XAI typically is more focused on so-called "black box" machine learning models, such as deep neural networks.  
 
 Deep learning is a relatively new set of methods of machine learning based off an older concept called neural networks.  Thanks to advancement in GPU technology, cheaper and faster processing of linear equations has become affordable and available to a wider audience of consumers, including researchers, hobbyists, and professionals.  They excel and these things but not at those things, but hey, they're even getting better at those things like creeping us out with people faces.
 
@@ -50,24 +51,53 @@ XAI is the interpretation and explanation of machine learning models.  In order 
     \item an \textbf{explanation} is the collection of features of the interpretable domain, that have contributed for a given example to produce a decision (e.g. classification or regression) \cite{MONTAVON20181}.
 \end{itemize}
 
-Interpretations are often presented in the form of a heat map layer on an image, natural language generated to either describe a decision or to describe a boundary of what a model can or cannot do, or an easier-to-explain model, such as a decision tree.  An explanation is the relationship between some aspect of machine learning to something that is interpretable.  The ambiguity and lack of formality around the concept of an explanation is discussed further in \ref{sec:Challenges} Challenges in XAI.
+Interpretations are often presented in the form of a heat map layer on an image, natural language generated to either describe a decision or to describe a boundary of what a model can or cannot do, or an easier-to-explain model, such as a decision tree.  An explanation is the relationship between a human-interpretable concept, such as words or shapes, some aspect of a machine learning model, such as how or why a decision was made.  There is ambiguity and a lack of formality around the concept of an explanation that is discussed further in \ref{sec:Challenges} Challenges in XAI.
+
+Some trained ML models may have easier-to-explain internals than others.  Decision trees are a common example of an explainable ML model.  The output of the decision tree can be directly back to identify the values of specific features that lead the model to its decision.  On the other hand, the internals of deep neural networks (DNN), by default, are opaque and are not directly interpretable.  The any node in the output layer of a neural network has many inputs with many weights, each of which may have many more inputs with many weights.  The value of a single input feature can propagate through potentially every node in a neural network, making it challenging to isolate the contribution of the value of a single feature in the decision of the model.  In addition to the challenge in tracing a single feature through the a DNN, a single feature, such as the pixel in an image, may not have an isolated interpretation for humans to understand.  In that sense, the relevancy of an isolated input feature may not have meaning or value from the human's perspective.  Other difficult-to-explain machine learning models include support vector machines (SVM), random forests, and Gaussian belief networks.
+
+There are various methods of XAI that can be applied in machine learning, both during or after the training of the ML model.  A priori methods are those in which a traditionally black box model can be constructed in such a way that it either is easier to explain with other methods or can generate an explanation alongside its traditional output.  Examples of generated explanations include using a LSTM DNN alongside a CNN to generate natural language explanations \cite{10.1007/978-3-319-46493-0_1} or embedding prototypes of outputs classes directly in the CNN \cite{Chen2018}.  A posteriori methods of XAI include visualizations techniques such as Deep Taylor decomposition and Layer-wise Relevance Propagation to generate heat maps that can be over-layed on the original input to help identify patterns in the relevancy of input features, such as highlighting shapes or regions that either supported or detracted from the network's decision.
+
+In this section, methods of XAI or organized into the types of artifacts that are generated: visualization, verbalization, data provenance, and model induction.
 
 \subsection{Visualization Techniques}
 
-Introductory paper of LRP \cite{10.1371/journal.pone.0130140}
+\subsubsection{LRP}
 
-Activation Maximization \cite{Nguyen2016}
+Layer-wise relevance propagation (LRP) is an a posteriori method of generating heat maps, or saliency maps, to highlight the positive and, sometimes, negative relevancy of input features in the output layer, or decision, of a DNN.  LRP is functionally a backward pass of the output layer back through the neural network to the input layer.  At its core, LRP is not a mathematical function but a set of constraints that defines properties of the relationship between layers in a DNN.  Data scientists can substitute existing or new activation functions to apply different highlight with different levels of sensitivity the relationship between the input and output layers of the DNN.
+
+The heat maps generated by LRP are not limited to image inputs.  Researchers have applied heat maps generate dy LRP to natural language, genetic sequences, and 3D models of molecules.
+
+\subsubsection{Activation maximization}
+
+Activation maximization is an a posteriori method for generating an input for a model that maximizes the activation of a specific output neuron\cite{Nguyen2016}, such as a class label.  In theory, the input that maximizes the output would be some sort of ideal or target input, but in practice, the input that maximizes the activation of a neuron may not resemble other similar training samples.  Further literature searching needs to be done in this area to identify cases in which valuable relationships were discovered via AM.
+
+\subsubsection{Prototypes in CNNs} Thus far in research, the concept of building a CNN with a prototype layer has been applied in image classification tasks.  A prototype is essentially an image of one of the target labels of the classifier.  The prototype image can either be a subset of an image from the training data or it can be images of the subject class from outside of the training data.  When the prototype layer is constructed from subsets of training images, the theory is that each prototype represents some interpretable, defining characteristic of the class, such as a color pattern on a bird or the shape of ears on a bear.
+
+Once a CNN has been constructed using a prototype layer, a data scientist can inspect the activation of various prototypes from that layer to gain insights into the importance of those characteristics in the CNN's decision.
 
 \subsection{Verbalization of Explanations}
+
+\subsubsection{Generating explanation in parallel}
+
 Verbalization of CNN decisions \cite{10.1007/978-3-319-46493-0_1}
+
+\subsubsection{Counterfactual explanations}
 
 An introduction of counter factual explanations as a method of explaining decisions without interpreting "black box" internals \cite{DBLP:journals/corr/abs-1711-00399}
 
+\subsubsection{Rule-based decision systems}
+
+While rule-based decision systems may not be the result of a machine learning method of training, these rule-based systems excel at verbal explanations.  Soar is a good example of this.
+
 \subsection{Data Provenance}
 
-Data provenance to trace decisions and analysis to the raw input data
+Data provenance is the attribution of the origins of data and the transformation that it undergoes in its journey.  Data provenance can be used to trace decisions and analysis to the raw input data.  Also, data provenance can be used to analyze how specific training samples influence an ML model.
+
+\subsubsection{LAMP}
 
 Calculating the contribution of individual training samples to a trained model's decision \cite{Ma2017}
+
+\subsubsection{Metadata persistence of heterogeneous ML methods}
 
 \subsection{Model Induction}
 
