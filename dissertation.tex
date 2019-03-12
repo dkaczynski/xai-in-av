@@ -101,28 +101,34 @@ Calculating the contribution of individual training samples to a trained model's
 
 \subsection{Model Induction}
 
-Model induction is the generating a more explainable model, such as a decision tree, from a black box model, such as a DNN.
+Model induction is the generating a more explainable model, such as a decision tree, from a black box model, such as a DNN.  Model induction has limit
 
 \subsection{Existing Surveys in XAI}
 
-\begin{itemize}
-    \item Comprehensive survey of visualizations as XAI techniques \cite{Hohman2018}
-    \item Methods of LRP \& heatmaps and their various use cases in research\cite{MONTAVON20181}
-    \item A comprehensive survey of a variety of XAI techniques, includes sensitivity analysis (like heatmapping), rule and model extraction, activation maximization, and more \cite{Guidotti:2018:SME:3271482.3236009}, but it doesn't mention verbalization as a technique
-    \item Network graphs plotting relationships between topics and sub-topics related to XAI \cite{Abdul:2018:TTE:3173574.3174156}
-    \item Another broad survey of techniques in the field of XAI along with a discussion on its history and fundamental concepts, but again, no mention of verbalization as a technique\cite{Adadi2018}
-\end{itemize}
+Although XAI is a relatively young field of research, appearing in publications circa 2016, there are at least hundreds of publications on the topic along with accompanying literature surveys that draw from the breadth of research.  Surveys vary in their perspective of XAI, the methods used to categorize literature, and the scope of methods that they cover.
+
+Hohman et al. conduct a thorough literature search of visualization techniques of XAI \cite{Hohman2018}.  The authors' perspective begins with an analysis of the taxonomy of questions that can be asked of machine learning models.  The visualization techniques are labeled with various helpful metadata, such as what type of visualization is produced, if the XAI method is a priori or a posteriori, and more.  This metadata on the visualization techniques allows the reader to easily map the various visualization techniques to the questions that they can answer.
+
+Montavon et al. present a far more focused literature search on a specific method of visualization in XAI and how it has been applied by other researchers, which domains, and to what ends \cite{MONTAVON20181}.  For a large portion of the paper, the method of Layer-wise Relevance Propagation (LRP) is broken down into its core mathematical principles so and trace those principles through a conceptual CNN to demonstrate how LRP may be applied to generate heat maps of input features to understand feature relevancy.  The authors to provide examples of LRP being applied in domains such as computer vision, genetic engineering, and chemistry.
+
+The approach of Abdul et al. is to plot the relationship of topics around the interpretation and explanation of machine learning through the use of network graph visualizations \cite{Abdul:2018:TTE:3173574.3174156}.  This contribution to the surveying of XAI literature provides a much needed compass since the terminology in XAI, and even the name of the field itself, is still evolving rapidly.  We can also observe the relationship of topics in XAI as they weave through such domains as psychology, human-computer interaction, and the sociological aspects of accountability and fairness.
+
+Guidotti et al. take a more broad approach to XAI methods by analyzing to what type of ML models have researchers been applying explanation methods, what were the interpretable domains of their inputs (e.g. images, natural language), and what methods of explanation were applied \cite{Guidotti:2018:SME:3271482.3236009}.  In this survey, a unique amount of attention was paid to methods of rule or model extraction, in which data scientists can extract a decision tree model or natural language rules as approximations of the original ML model.
+
+Adadi et al. also take look at the methods of XAI as a whole and describe considerable detail on the non-visualization methods of XAI \cite{Adadi2018}.  In addition to their discussion on the taxonomy of XAI methods, this survey tracks the history of the terminology around XAI, exposing the burgeoning growth of the field and providing insight on the demands being placed on the field.  The authors classify the value provided by XAI into four different areas: explain to justify, explain to control, explain to improve, and explain to discover.
+
+In some sense, the abundance of literature in such a short period of time speaks to the demand for further research in the field and to the wide-held interest across people of many backgrounds.  Time will tell if XAI can deliver the value that people seek or, maybe, if societal impressions of AI/ML will evolve to no longer be concerned with the inner workings of machine learning.
 
 \section{Use Cases} \label{sec:UseCases}
 
 We've layed out various methods of XAI, but the question still remains of how do these methods provide value to anyone.  Here, we explore the various users who interface with XAI and what value is provided.
 
-\subsection{As a data scientist, I can use the explanation of model decisions to identify opportunities to improve the training dataset and make the model more robust}
+\subsection{As a data scientist, I can use the explanation of model decisions to identify opportunities to improve the training data set and make the model more robust}
 
 \begin{itemize}
-    \item Montavan et al provide multiple real examples of researchers using a popular XAI method called Layerwise Relevance Propogation (LRP) for convolutional neural networks \cite{MONTAVON20181}.  In one example, it was discovered that a computer vision classifier was classifying horses based on a watermark that was present in the training dataset.
-    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training dataset.
-    \item Liu et al focus on interpreting the decisions of a model used to identify cybersecurity threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perterbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
+    \item Montavan et al provide multiple real examples of researchers using a popular XAI method called Layer-wise Relevance Propagation (LRP) for convolutional neural networks \cite{MONTAVON20181}.  In one example, it was discovered that a computer vision classifier was classifying horses based on a watermark that was present in the training data set.
+    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training datavset.
+    \item Liu et al focus on interpreting the decisions of a model used to identify cyber security threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perturbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
     \item LAMP is a tool that can trace the decision of a trained model to the importance that individual samples had on that decision. \cite{Ma2017}
 \end{itemize}
 
@@ -136,17 +142,17 @@ We've layed out various methods of XAI, but the question still remains of how do
 \subsection{As a provider of an AI/ML product, I am responsible for providing an explanation for how my product makes its decisions in the case of being the subject of an investigation or defendant in a lawsuit}
 
 \begin{itemize}
-    \item Human subjects conduct fictitious banking scenarios, both with and without descrimination-aware data mining (DADM) tools \cite{Berendt2014}.  The accuracy and presence of discrimination in decisions was compared across tools.
-    \item Autonomous vehicles and vehicles with ADAS from Tesla, Google, and GM Cruise have been involved with numerous traffic incidencts, ranging from trivial to fatal \cite{Read2016} \cite{Tesla2018} \cite{Ackerman2016} \cite{Bhavsar2017} 
+    \item Human subjects conduct fictitious banking scenarios, both with and without discrimination-aware data mining (DADM) tools \cite{Berendt2014}.  The accuracy and presence of discrimination in decisions was compared across tools.
+    \item Autonomous vehicles and vehicles with ADAS from Tesla, Google, and GM Cruise have been involved with numerous traffic incidents, ranging from trivial to fatal \cite{Read2016} \cite{Tesla2018} \cite{Ackerman2016} \cite{Bhavsar2017} 
     \item Researchers discuss non-technical challenges and high-level technical challenges in investigating transparent model design in private industry \cite{Veale:2018:FAD:3173574.3174014}
     \item In the criminal justice system, judges and parole boards may apply predictive models as tools in making decisions.  Racial discrimination has been uncovered in such tools \cite{Wexler.2017} \cite{Angwin2016}.
-    \item A magazine article describes the GPDR's "right to explanation" and includes a survey of research in identifying and rectifying descrimination \cite{Goodman2017EuropeanUR}
+    \item A magazine article describes the GPDR's "right to explanation" and includes a survey of research in identifying and rectifying discrimination \cite{Goodman2017EuropeanUR}
 \end{itemize}
 
 \subsection{As a member of a team of data scientists, I want to improve collaboration and reduce the duplication of effort by being able to effectively store, query, and trace how and on what data our  AI/ML models were trained, and, potentially, be able to trace a decision to the relevancy of each training item}
 
 \begin{itemize}
-    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or dervied values  \cite{Interlandi2017}.
+    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
     \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
 \end{itemize}
 
@@ -168,7 +174,7 @@ The use cases defined in \ref{sec:UseCases} Use Cases span users with a wide var
 
 \section{Conclusion and Future Research}
 
-Apply XAI to \ref{sec:Alignment} Alignment with Autonomous Vehicles and also identify \ref{sec:Challenges} Challenges in XAI that may be worked towards.
+Apply XAI to \ref{sec:Alignment} \textit{Alignment with Autonomous Vehicles} and also identify \ref{sec:Challenges} \textit{Challenges in XAI} that may be worked towards.
 
 \bibliography{references}
 \bibliographystyle{ieeetr} 
