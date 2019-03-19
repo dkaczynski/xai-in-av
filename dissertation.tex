@@ -25,6 +25,8 @@ Deep learning is a relatively new branch of machine learning methods based off t
 
 Through progress and controversy, artificial intelligence and machine learning are interfacing with more people in more ways every year, and there is a general awareness being raised about the legitimate concerns of the trustworthiness and accountability of these technologies.  Medical diagnosis, autonomous vehicles, and national security are just a few examples of ways in which machine learning can directly impact the health and well being of individuals' lives.  XAI is a new tool in the frontier of establishing traceable, trustworthy, and accountable decision systems.
 
+*** This section should likely have something about autonomous vehicles in society ***
+
 \subsection{Organization of Paper}
 
 This paper is organized into the following sections.
@@ -119,14 +121,15 @@ Adadi et al. also take look at the methods of XAI as a whole and describe consid
 In some sense, the abundance of literature in such a short period of time speaks to the demand for further research in the field and to the wide-held interest across people of many backgrounds.  Time will tell if XAI can deliver the value that people seek or, maybe, if societal impressions of AI/ML will evolve to no longer be concerned with the inner workings of machine learning.
 
 \section{Use Cases} \label{sec:UseCases}
+Various methods of XAI have been layed out in the previous section, but the question still remains of how do these methods provide value to scientists, consumers, or society at large.  Here, we explore the various users who interface with XAI and what value is provided.
 
-We've layed out various methods of XAI, but the question still remains of how do these methods provide value to anyone.  Here, we explore the various users who interface with XAI and what value is provided.
+\subsection{As a data scientist, I can use the explanation of a model's decisions to identify opportunities to improve the training data set and make the model more robust}
 
-\subsection{As a data scientist, I can use the explanation of model decisions to identify opportunities to improve the training data set and make the model more robust}
+This use case takes an \textit{a posteriori} approach to identifying opportunities to improve a model's performance.  In current literature
 
 \begin{itemize}
     \item Montavan et al provide multiple real examples of researchers using a popular XAI method called Layer-wise Relevance Propagation (LRP) for convolutional neural networks \cite{MONTAVON20181}.  In one example, it was discovered that a computer vision classifier was classifying horses based on a watermark that was present in the training data set.
-    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training datavset.
+    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training data set.
     \item Liu et al focus on interpreting the decisions of a model used to identify cyber security threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perturbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
     \item LAMP is a tool that can trace the decision of a trained model to the importance that individual samples had on that decision. \cite{Ma2017}
 \end{itemize}
@@ -159,6 +162,18 @@ We've layed out various methods of XAI, but the question still remains of how do
 
 The use cases defined in \ref{sec:UseCases} \textit{Use Cases} span users with a wide variety of backgrounds.  This section will be the innovative contribution of this literature survey.
 
+\begin{itemize}
+    \item Textual Explanations for Self-Driving Vehicles \cite{kim2018textual}: This is the most comprehensive paper from this group of authors.  Very great work!  Explanations for the vehicle's decisions are presented to human subjects for validation.
+
+    \item Interpretable Learning for Self-Driving Cars by Visualizing Causal Attention \cite{Kim2017InterpretableLF}:  This paper focuses more on just the visual interpretation of the agent's choices.
+
+    \item Show, Attend, Control, and Justify: Interpretable Learning for Self-Driving Cars \cite{Kim2017ShowA}: This paper describes the LSTM topology for generating textual explanations
+
+    \item Why did my car just do that? Explaining semi-autonomous driving actions to improve driver understanding, trust, and performance \cite{Koo2015}:  Human subjects act as drivers in HIL simulation of a semi-autonomous vehicle that can create hard brake events in emergency scenarios.
+    
+    \item Explaining How a Deep Neural Network Trained with End-to-End Learning Steers a Car \cite{Bojarski2017ExplainingHA}: There's one more article by these authors (currently in our Mendeley)...one is short and visual, the other is highly theoretical and explains in detail the process for generating saliency maps
+\end{itemize}
+
 \section{Challenges in XAI} \label{sec:Challenges}
 
 \begin{itemize}
@@ -175,6 +190,7 @@ The use cases defined in \ref{sec:UseCases} \textit{Use Cases} span users with a
 
 Apply XAI to \ref{sec:Alignment} \textit{Alignment with Autonomous Vehicles} and also identify \ref{sec:Challenges} \textit{Challenges in XAI} that may be worked towards.
 
+\nocite{*}
 \bibliography{references}
 \bibliographystyle{ieeetr} 
 
