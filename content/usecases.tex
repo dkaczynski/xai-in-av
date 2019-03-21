@@ -1,0 +1,38 @@
+\section{Use Cases} \label{sec:UseCases}
+Various methods of XAI have been layed out in the previous section, but the question still remains of how do these methods provide value to scientists, consumers, or society at large.  Here, we explore the various users who interface with XAI and what value is provided.
+
+\subsection{As a data scientist, I can use the explanation of a model's decisions to identify opportunities to improve the training data set and make the model more robust}
+
+This use case takes an \textit{a posteriori} approach to identifying opportunities to improve a model's performance.  In current literature, the XAI methods involved are commonly visualization techniques, but other methods are still applicable.  Due to the subjective nature of interpretation methods like visualization of relevant features, any action in improving the training of a model requires a human expert to analyze the explanation for potential weaknesses in the model's decision process.
+
+In one example of improving a model through the identification of relevant features, a group of researchers used a Fisher Vector classifier on the PAS- CAL VOC 2007 data set \cite{Bach2016AnalyzingCF}.  After applying LRP to as a tool in explaining the classifier's decisions, it was apparent that the copyright watermark on images of horses was highly relevant in the Fisher Vector model.  The researchers then removed the copyright watermark before retraining the model, and future decisions considered the horse and its surroundings as more relevant features.
+
+\begin{itemize}
+    \item The image of a dog was misclassified as a wolf \cite{Ribeiro:2016:WIT:2939672.2939778}.  Feature relevancy revealed that the snowy ground around the dog was deemed as the most relevant input pixels.  The model can be improved by adding images of dogs with snowy backdrops to the training data set.
+    \item Liu et al focus on interpreting the decisions of a model used to identify cyber security threats \cite{Liu:2018:ADM:3219819.3220027}.  The researchers interpret the model's decisions that failed to successfully label threats.  The interpretations help the researchers identify how to generate specific perturbations in the training data that improve the training of the model against previously misidentified threats.  The accuracy of the model improves.
+    \item LAMP is a tool that can trace the decision of a trained model to the importance that individual samples had on that decision. \cite{Ma2017}
+\end{itemize}
+
+\subsection{As a potential consumer of an AI/ML product, such as an autonomous vehicle or virtual assistant, an explanation of how the product is making its decisions will improve my trust in the product}
+
+\begin{itemize}
+    \item Human subjects are asked about how much they trust a classifier before and after its explanations are made available \cite{Ribeiro:2016:WIT:2939672.2939778}.  
+    \item Decisions from autonomous vehicles and advanced driver assistance systems (ADAS) may be explained using XAI methods to answer the questions "How?" and "Why?".  Koo et al measure both the emotional impact and impact in making safer decisions when drivers are provided answers to these questions \cite{Koo2015}
+\end{itemize}
+
+\subsection{As a provider of an AI/ML product, I am responsible for providing an explanation for how my product makes its decisions in the case of being the subject of an investigation or defendant in a lawsuit}
+
+\begin{itemize}
+    \item Human subjects conduct fictitious banking scenarios, both with and without discrimination-aware data mining (DADM) tools \cite{Berendt2014}.  The accuracy and presence of discrimination in decisions was compared across tools.
+    \item Autonomous vehicles and vehicles with ADAS from Tesla, Google, and GM Cruise have been involved with numerous traffic incidents, ranging from trivial to fatal \cite{Read2016} \cite{Tesla2018} \cite{Ackerman2016} \cite{Bhavsar2017} 
+    \item Researchers discuss non-technical challenges and high-level technical challenges in investigating transparent model design in private industry \cite{Veale:2018:FAD:3173574.3174014}
+    \item In the criminal justice system, judges and parole boards may apply predictive models as tools in making decisions.  Racial discrimination has been uncovered in such tools \cite{Wexler.2017} \cite{Angwin2016}.
+    \item A magazine article describes the GPDR's "right to explanation" and includes a survey of research in identifying and rectifying discrimination \cite{Goodman2017EuropeanUR}
+\end{itemize}
+
+\subsection{As a member of a team of data scientists, I want to improve collaboration and reduce the duplication of effort by being able to effectively store, query, and trace how and on what data our  AI/ML models were trained, and, potentially, be able to trace a decision to the relevancy of each training item}
+
+\begin{itemize}
+    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
+    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
+\end{itemize}
