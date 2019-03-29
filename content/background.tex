@@ -61,6 +61,15 @@ Calculating the contribution of individual training samples to a trained model's
 
 Model induction is the generating a more explainable model, such as a decision tree, from a black box model, such as a DNN.  Model induction can be limited by the domain of the features.  For example, decision trees of pixel patterns in a computer vision model may not provide additional interpretability.
 
+\subsection{Data Provenance}
+
+As a member of a team of data scientists, I want to increase transparency and accountability in the data science workflow by being able to effectively store, query, and trace how and on what data our AI/ML models were trained.
+
+\begin{itemize}
+    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
+    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
+\end{itemize}
+
 \subsection{Existing Surveys in XAI}
 
 Although XAI is a relatively young field of research, appearing in publications circa 2016, there are at least hundreds of publications on the topic along with accompanying literature surveys that draw from the breadth of research.  Surveys vary in their perspective of XAI, the methods used to categorize literature, and the scope of methods that they cover.
