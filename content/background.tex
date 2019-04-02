@@ -49,7 +49,13 @@ While rule-based decision systems may not be the result of a machine learning me
 
 \subsection{Data Provenance}
 
-Data provenance is the attribution of the origins of data and the transformation that it undergoes in its journey.  Data provenance can be used to trace decisions and analysis to the raw input data.  Also, data provenance can be used to analyze how specific training samples influence an ML model.
+While other methods of XAI mostly focus on interpreting or explaining a model's decision based on the model's input, data provenance can explain how a model was created or how the training data relates to a decision.  The field of data provenance focuses on establishing transparent data lineage throughout the life cycle of the data.  What am I talking about here...do I want to get into the use cases, like "DP is particularly useful for auditory and development use cases"?  But that's what the use cases section is for...this paragraph is talking about DP in contrast to the other methods though, and that's a good way to contrast that.  Wrap up this paragraph and move on to expanding on itemized list below.
+
+\begin{itemize}
+    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
+    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
+    \item MLFlow is a python library for tracking artifacts along the data science workflow and sharing them \cite{Zaharia2018}.  It integrates with several popular ML platforms, such as Spark, scikit-learn, PyTorch, Tensorflow, and Keras.
+\end{itemize}
 
 \subsubsection{LAMP}
 
@@ -59,16 +65,7 @@ Calculating the contribution of individual training samples to a trained model's
 
 \subsection{Model Induction}
 
-Model induction is the generating a more explainable model, such as a decision tree, from a black box model, such as a DNN.  Model induction can be limited by the domain of the features.  For example, decision trees of pixel patterns in a computer vision model may not provide additional interpretability.
-
-\subsection{Data Provenance}
-
-As a member of a team of data scientists, I want to increase transparency and accountability in the data science workflow by being able to effectively store, query, and trace how and on what data our AI/ML models were trained.
-
-\begin{itemize}
-    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
-    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
-\end{itemize}
+Model induction is the creation of a more explainable model, such as a decision tree, from a black box model, such as a DNN.  Model induction can be limited by the domain of the features.  For example, decision trees of pixel patterns in a computer vision model may not provide additional interpretability.
 
 \subsection{Existing Surveys in XAI}
 
