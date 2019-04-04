@@ -49,19 +49,9 @@ While rule-based decision systems may not be the result of a machine learning me
 
 \subsection{Data Provenance}
 
-While other methods of XAI mostly focus on interpreting or explaining a model's decision based on the model's input, data provenance can explain how a model was created or how the training data relates to a decision.  The field of data provenance focuses on establishing transparent data lineage throughout the life cycle of the data.  What am I talking about here...do I want to get into the use cases, like "DP is particularly useful for auditory and development use cases"?  But that's what the use cases section is for...this paragraph is talking about DP in contrast to the other methods though, and that's a good way to contrast that.  Wrap up this paragraph and move on to expanding on itemized list below.
+While other methods of XAI mostly focus on interpreting or explaining a model's decision based on evaluating new input, data provenance can explain how a model was created or how the training data relates to a decision.  Applying the principles of data provenance to the development of ML models establishes transparent data lineage throughout the life cycle of the data.  Being able to trace the history of the data provides benefit particularly for data scientists and auditors of ML systems.  Data scientists can develop ML models more collaboratively when they are able to log and share the various steps that have been applied in their workflows and their results, and auditors may analyze the history of the data to help identify potential issues with bias or discrimination.  If an opportunity to reduce bias or discrimination is discovered, then having a healthy lineage of the data should help data scientists in reducing effort in training a new model by exercising lessons learned and observations from previous development.
 
-\begin{itemize}
-    \item Researchers develop a tool on the distributed computation framework Spark that traces individual records through transformations and their relationship to aggregated or derived values  \cite{Interlandi2017}.
-    \item A team at from Amazon developed a platform and storage schema for effectively persisting and querying the activity of heterogenous ML tools \cite{Schelter2017}, providing the ability to replicate training of models and a platform for conducting analytics across development of ML models.
-    \item MLFlow is a python library for tracking artifacts along the data science workflow and sharing them \cite{Zaharia2018}.  It integrates with several popular ML platforms, such as Spark, scikit-learn, PyTorch, Tensorflow, and Keras.
-\end{itemize}
-
-\subsubsection{LAMP}
-
-Calculating the contribution of individual training samples to a trained model's decision \cite{Ma2017}
-
-\subsubsection{Metadata persistence} Heterogenous tools are available for modern data scientists, but much of the workflow of a data scientist remains the same:  clean, extract, train, and evaluate (oversimplified).  Data provenance can be used to create relationships between the raw sources of data through all of the transformations and training that generated an ML model, along with relationships to various evaluation metrics.  In this context, data provenance can be considered a method of XAI that explains how a model was created and how its performance compares to the performance of other models, all the way from raw training data to statistical analysis of test results.  Architectures, data models, and wrappers have been developed to aid data scientists in capturing valuable metadata on the workflow of developing ML models.
+The taxonomy of concepts of data provenance may be high-level or even vague at times, but the core concepts lend themselves well to practical usage, such as the modeling, capturing, and persisting metadata \cite{Simmhan:2005:SDP:1084805.1084812}.  There exist many tools for generic data provenance activities, like managing the overhead and the scaling of metadata capture \cite{Simmhan2005ASO} or capturing data lineage by wrapping ETL pipelines \cite{Interlandi2017}; however, there are also software tools that are establishing themselves as ML-centric by integrating directly with existing ML libraries or offering their own libraries for common ML activity.  MLflow is a python library that provides metadata logging and collaboration features by integrating with common ML libraries, including Tensorflow, scikit-learn, Spark ML, and PyTorch \cite{Zaharia2018}.  H20.ai is a platform that focuses more inter-language operability by providing python, scala, R, and java APIs for their data provenance platform which includes libraries for feature extraction, dimension reduction, classification, and other common activities for training models \cite{H20.ai}.  Software tools and libraries for machine learning are becoming more accessible to wider audiences of data scientists, and there is industry demand for data provenance solutions that support heterogeneous machine learning platforms \cite{Schelter2017}.
 
 \subsection{Model Induction}
 
@@ -84,6 +74,8 @@ Adadi et al. also take look at the methods of XAI as a whole and describe consid
 In some sense, the abundance of literature in such a short period of time speaks to the demand for further research in the field and to the wide-held interest across people of many backgrounds.  Time will tell if XAI can deliver the value that people seek or, maybe, if societal impressions of AI/ML will evolve to no longer be concerned with the inner workings of machine learning.
 
 \subsection{Existing Applications of XAI in Autonomous Vehicles}
+
+
 
 \begin{itemize}
     \item Textual Explanations for Self-Driving Vehicles \cite{kim2018textual}: This is the most comprehensive paper from this group of authors.  Very great work!  Explanations for the vehicle's decisions are presented to human subjects for validation.
